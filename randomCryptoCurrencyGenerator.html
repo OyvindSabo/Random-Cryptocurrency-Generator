@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $.getJSON("https://api.coinmarketcap.com/v1/ticker/", function(result){
+	$("button").click(function(){
+            var randNum = Math.floor(Math.random() * 100) + 1;
+	    document.getElementById('currencyName').innerHTML = result[randNum].name +" ("+result[randNum].symbol+")";
+	    document.getElementById('currencyRank').innerHTML = "Rank: #"+result[randNum].rank;
+	    document.getElementById('priceUSD').innerHTML = "Price (USD): "+result[randNum].price_usd;
+	    document.getElementById('priceBTC').innerHTML = "Price (BTC): "+result[randNum].price_btc;
+	    document.getElementById('availableSupply').innerHTML = "Circulating Supply: "+" "+result[randNum].available_supply+" "+result[randNum].symbol;
+        });
+    });
+});
+
+</script>
+</head>
+<body>
+    <div id='currencyName'></div>
+    <div id='currencyRank'></div>
+    <div id='priceUSD'></div>
+    <div id='priceBTC'></div>
+    <div id='availableSupply'></div>
+    <button>Generate random currency</button>
+	
+
+</body>
+</html>
